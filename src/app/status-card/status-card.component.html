@@ -20,16 +20,16 @@
                 </div>
                 <div class="dropdown-menu" id="dropdown-menu" role="menu">
                     <div class="dropdown-content">
-                        <a href="#" class="dropdown-item" [ngClass]="status === 'inprogress' ? 'is-active': ''">
-                            Incomplete
+                        <a (click)="changeStatus(taskId, status, 'inprogress')" class="dropdown-item" [ngClass]="status === 'inprogress' ? 'is-active': ''">
+                            InProgress
                         </a>
-                        <a href="#" class="dropdown-item" [ngClass]="status === 'pending' ? 'is-active': ''">
+                        <a (click)="changeStatus(taskId, status, 'pending')" class="dropdown-item" [ngClass]="status === 'pending' ? 'is-active': ''">
                             Pending
                         </a>
-                        <a href="#" class="dropdown-item" [ngClass]="status === 'completed' ? 'is-active': ''">
+                        <a (click)="changeStatus(taskId, status, 'completed')" class="dropdown-item" [ngClass]="status === 'completed' ? 'is-active': ''">
                             Completed
                         </a>
-                        <a *ngIf="status == 'completed'" href="#" class="dropdown-item">
+                        <a *ngIf="status === 'completed'"  (click)="changeStatus(taskId, status, 'delete')" class="dropdown-item">
                             Delete Task
                         </a>
                     </div>

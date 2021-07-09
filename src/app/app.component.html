@@ -5,21 +5,21 @@
     <div class="column leftBorder">
       <div class="subtitle has-text-white">Pending Tasks</div>
       <div *ngFor="let task of pendingTasks">
-        <app-status-card status={{task.status}} title={{task.title}} description={{task.description}}></app-status-card>
+        <app-status-card (changedStatus)="statusChanged($event)" taskId={{task.id}} status={{task.status}} title={{task.title}} description={{task.description}}></app-status-card>
         <br>
       </div>
     </div>
     <div class="column leftBorder"> 
       <div class="subtitle has-text-white">In Progress Tasks</div>
       <div *ngFor="let task of inProgressTasks">
-        <app-status-card status={{task.status}} title={{task.title}} description={{task.description}}></app-status-card>
+        <app-status-card (changedStatus)="statusChanged($event)" taskId={{task.id}} status={{task.status}} title={{task.title}} description={{task.description}}></app-status-card>
         <br>
       </div>
     </div>
     <div class="column"> 
       <div class="subtitle has-text-white">Completed Tasks</div>
       <div *ngFor="let task of completeTasks">
-        <app-status-card status={{task.status}} title={{task.title}} description={{task.description}}></app-status-card>
+        <app-status-card (changedStatus)="statusChanged($event)" taskId={{task.id}} status={{task.status}} title={{task.title}} description={{task.description}}></app-status-card>
         <br>
       </div>
     </div>

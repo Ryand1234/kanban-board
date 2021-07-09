@@ -1,9 +1,14 @@
 <div>
   <h1 class="title has-text-centered mt-3 has-text-white">{{title}}</h1>
   <hr/>
+  <app-add-task *ngIf="showAdd" (hideAddTask)="toggleAddTask()" (addTask)="addNewTask($event)"></app-add-task>
   <div class="columns px-4 has-text-centered">
     <div class="column leftBorder">
-      <div class="subtitle has-text-white">Pending Tasks</div>
+      <div class="row my-2">
+        <div class="subtitle has-text-white">Pending Tasks
+          <div class="button is-small has-text-right" (click)="toggleAddTask()">Add Task</div>
+        </div>
+      </div>
       <div *ngFor="let task of pendingTasks">
         <app-status-card (changedStatus)="statusChanged($event)" taskId={{task.id}} status={{task.status}} title={{task.title}} description={{task.description}}></app-status-card>
         <br>

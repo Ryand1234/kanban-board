@@ -54,11 +54,21 @@ export class AppComponent implements OnInit{
     inProgressTasks: any
     completeTasks: any
     pendingTasks: any
-    
+    showAdd: Boolean = true;
+
     ngOnInit() {
      this.inProgressTasks  = this.tasks.filter( (e) => e.status === 'inprogress')
      this.completeTasks = this.tasks.filter( (e) => e.status === 'completed')
      this.pendingTasks = this.tasks.filter( (e) => e.status === 'pending')
+    }
+
+    toggleAddTask() {
+      this.showAdd = !this.showAdd
+    }
+
+    addNewTask (task) {
+      this.pendingTasks.push(task);
+      this.toggleAddTask()
     }
 
     statusChanged({id, status, newStatus}) {

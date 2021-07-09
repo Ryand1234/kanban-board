@@ -1,0 +1,32 @@
+<div class="card m-3">
+    <div class="card-header">
+        <div class="card-header-title is-centered">Add Task</div>
+    </div>
+    <div class="card-content">
+        <div class="field">
+            <label class="label">Title</label>
+            <div class="control">
+                <input class="input" [(ngModel)]="currentTask.title" type="text" placeholder="Task title">
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Description</label>
+            <div class="control">
+              <textarea [(ngModel)]="currentTask.description" class="textarea" placeholder="Task"></textarea>
+            </div>
+        </div>
+          
+          <!-- <div class="field">
+            <label class="label">Date</label>
+            <div class="control">
+              <input class="input" [(ngModel)]="date" type="date" >
+            </div>
+          </div> -->
+
+        <div class="buttons has-text-centered">
+            <button class="button is-small is-primary" (click)="add()">Submit</button>
+            <button (click)="hide()" class="button is-small is-light">Cancel</button>
+        </div> 
+    </div>
+</div>

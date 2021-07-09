@@ -1,30 +1,25 @@
-import { Component, Input, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-status-card',
   templateUrl: './status-card.component.html',
   styleUrls: ['./status-card.component.css']
 })
-export class StatusCardComponent implements OnInit, AfterViewInit {
+export class StatusCardComponent implements OnInit {
   // status: string = ""
-  @ViewChild('.dropdown') dropdown: ElementRef;
   @Input() status: String;
   @Input() title: String;
   statusClass: String = 'pending'
   constructor() { }
-
+  isActive: Boolean = false
   ngOnInit(): void {
     console.log(this.status)
     this.statusClass = this.status;
+    
+  }
+  
+  change() {
+    this.isActive = !this.isActive
   }
 
-  ngAfterViewInit() {
-    console.log(this.dropdown)
-  }
-
-  // dropdown: any = document.getElementById('.dropdown')
-  // this.dropdown.addEventListener('click', (e) => {
-  //   e.stopPropagation();
-  //   this.dropdown.classList.toggle('is-active');
-  // })
 }

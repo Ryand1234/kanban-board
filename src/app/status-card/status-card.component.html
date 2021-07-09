@@ -5,11 +5,26 @@
     <div class="card-content">
         <div class="columns">
             <div class="column">
-                Title
+                {{ title }}
             </div>
-            <div class="column">
-                <div class="button">
-                    check
+            <div class="dropdown is-active">
+                <div class="dropdown-trigger">
+                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                        <span>Change Status</span>
+                    </button>
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                    <div class="dropdown-content">
+                        <a href="#" class="dropdown-item">
+                            Incomplete
+                        </a>
+                        <a href="#" class="dropdown-item is-active">
+                            Pending
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            Completed
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

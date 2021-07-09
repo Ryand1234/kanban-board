@@ -1,15 +1,27 @@
 <div>
-  <h1 class="title has-text-centered mt-3">{{title}}</h1>
+  <h1 class="title has-text-centered mt-3 has-text-white">{{title}}</h1>
   <hr/>
   <div class="columns px-4 has-text-centered">
     <div class="column">
-      <app-status-card status="incomplete"></app-status-card>
+      <div class="subtitle has-text-white">Pending Tasks</div>
+      <div *ngFor="let task of pendingTasks">
+        <app-status-card status={{task.status}} title={{task.title}}></app-status-card>
+        <br>
+      </div>
     </div>
     <div class="column"> 
-      <app-status-card status="pending"></app-status-card>
+      <div class="subtitle has-text-white">In Progress Tasks</div>
+      <div *ngFor="let task of inProgressTasks">
+        <app-status-card status={{task.status}} title={{task.title}}></app-status-card>
+        <br>
+      </div>
     </div>
     <div class="column"> 
-      <app-status-card status="completed"></app-status-card>
+      <div class="subtitle has-text-white">Completed Tasks</div>
+      <div *ngFor="let task of completeTasks">
+        <app-status-card status={{task.status}} title={{task.title}}></app-status-card>
+        <br>
+      </div>
     </div>
   </div>
 </div>

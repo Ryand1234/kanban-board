@@ -8,10 +8,12 @@ import { Component, Input, OnInit } from '@angular/core';
 export class StatusCardComponent implements OnInit {
   // status: string = ""
   @Input() status: String;
+  statusClass: String = 'pending'
   constructor() { }
 
   ngOnInit(): void {
     console.log(this.status)
+    this.statusClass = this.status;
   }
 
 }

@@ -1,2 +1,17 @@
-<p>status-card works!</p>
-<p>Status: {{status}}</p>
+<div class="card" [ngClass]="statusClass">
+    <div class="card-header">
+        <div>Hello world</div>
+    </div>
+    <div class="card-content">
+        <div class="columns">
+            <div class="column">
+                Title
+            </div>
+            <div class="column">
+                <div class="button">
+                    check
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

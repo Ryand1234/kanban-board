@@ -9,37 +9,44 @@ export class AppComponent implements OnInit{
   tasks = [
     {
       title: 'Do HomeWork',
-      status: 'pending'
+      status: 'pending',
+      description: 'A new Task'
     },
     {
       title: 'Call someone',
-      status: 'inprogress'
+      status: 'inprogress',
+      description: 'A new Task'
     },
     {
       title: 'Call someone',
-      status: 'inprogress'
+      status: 'inprogress',
+      description: 'A new Task'
     },
     {
       title: 'Call someone',
-      status: 'pending'
+      status: 'pending',
+      description: 'A new Task'
     },
     {
       title: 'Call someone',
-      status: 'completed'
+      status: 'completed',
+      description: 'A new Task'
     },
     {
       title: 'Call someone',
-      status: 'inprogress'
+      status: 'inprogress',
+      description: 'A new Task'
     },
     {
       title: 'Call someone',
-      status: 'completed'
+      status: 'completed',
+      description: 'A new Task'
     }
   ]
     inProgressTasks: any
     completeTasks: any
     pendingTasks: any
-    // console.log('C: ', this.pendingTasks)
+    
     ngOnInit() {
      this.inProgressTasks  = this.tasks.filter( (e) => e.status === 'inprogress')
      this.completeTasks = this.tasks.filter( (e) => e.status === 'completed')

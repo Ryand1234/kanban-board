@@ -1,11 +1,13 @@
 <div class="card" [ngClass]="statusClass">
     <div class="card-header">
-        <div>Hello world</div>
+        <div class="card-header-title is-centered">
+            {{ title }}
+        </div>
     </div>
     <div class="card-content">
         <div class="columns">
             <div class="column">
-                {{ title }}
+                {{ description }}
             </div>
             <div class="dropdown" [ngClass]="isActive ? 'is-active': ''">
                 <div class="dropdown-trigger">
@@ -18,14 +20,17 @@
                 </div>
                 <div class="dropdown-menu" id="dropdown-menu" role="menu">
                     <div class="dropdown-content">
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="dropdown-item" [ngClass]="status === 'inprogress' ? 'is-active': ''">
                             Incomplete
                         </a>
-                        <a href="#" class="dropdown-item is-active">
+                        <a href="#" class="dropdown-item" [ngClass]="status === 'pending' ? 'is-active': ''">
                             Pending
                         </a>
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="dropdown-item" [ngClass]="status === 'completed' ? 'is-active': ''">
                             Completed
+                        </a>
+                        <a *ngIf="status == 'completed'" href="#" class="dropdown-item">
+                            Delete Task
                         </a>
                     </div>
                 </div>

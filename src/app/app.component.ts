@@ -51,10 +51,11 @@ export class AppComponent implements OnInit{
     }
   ]
     curTask: any = {}
+    totalTasks: number = this.tasks.length
     inProgressTasks: any
     completeTasks: any
     pendingTasks: any
-    showAdd: Boolean = true;
+    showAdd: Boolean = false;
 
     ngOnInit() {
      this.inProgressTasks  = this.tasks.filter( (e) => e.status === 'inprogress')
@@ -67,6 +68,8 @@ export class AppComponent implements OnInit{
     }
 
     addNewTask (task) {
+      this.totalTasks = this.totalTasks + 1
+      task.id = this.totalTasks
       this.pendingTasks.push(task);
       this.toggleAddTask()
     }

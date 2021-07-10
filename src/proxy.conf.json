@@ -1,0 +1,5 @@
+{
+    "/api/*": {
+      "target": "https://kanban-board-new.herokuapp.com"
+    }
+}

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from './api.service'
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -6,72 +8,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit{
   title = 'Kanban Board';
-  tasks = [
-    {
-      id: 1,
-      title: 'Do HomeWork',
-      status: 'pending',
-      description: 'A new Task'
-    },
-    {
-      id: 2,
-      title: 'Call someone',
-      status: 'inprogress',
-      description: 'A new Task'
-    },
-    {
-      id: 3,
-      title: 'Call someone',
-      status: 'inprogress',
-      description: 'A new Task'
-    },
-    {
-      id: 4,
-      title: 'Call someone',
-      status: 'pending',
-      description: 'A new Task'
-    },
-    {
-      id: 5,
-      title: 'Call someone',
-      status: 'completed',
-      description: 'A new Task'
-    },
-    {
-      id: 6,
-      title: 'Call someone',
-      status: 'inprogress',
-      description: 'A new Task'
-    },
-    {
-      id: 7,
-      title: 'Call someone',
-      status: 'completed',
-      description: 'A new Task'
-    }
-  ]
+    
+    constructor(private service: ApiService) {}
+
     curTask: any = {}
-    totalTasks: number = this.tasks.length
+    totalTasks: number = 0
     inProgressTasks: any
     completeTasks: any
     pendingTasks: any
     showAdd: Boolean = false;
-
-    ngOnInit() {
-     this.inProgressTasks  = this.tasks.filter( (e) => e.status === 'inprogress')
-     this.completeTasks = this.tasks.filter( (e) => e.status === 'completed')
-     this.pendingTasks = this.tasks.filter( (e) => e.status === 'pending')
+    task: any
+    async ngOnInit() {
+      this.service.query({'op': 3}).subscribe((res: any)=>{
+          this.totalTasks = res.length
+          this.inProgressTasks  = res.filter( (e) => e.status === 'inprogress')
+          this.completeTasks = res.filter( (e) => e.status === 'completed')
+          this.pendingTasks = res.filter( (e) => e.status === 'pending')
+        });
+          
     }
 
     toggleAddTask() {
       this.showAdd = !this.showAdd
     }
 
-    addNewTask (task) {
+    async addNewTask (task) {
       this.totalTasks = this.totalTasks + 1
       task.id = this.totalTasks
       this.pendingTasks.push(task);
       this.toggleAddTask()
+      this.service.query({'data': task, 'op': 1}).subscribe()
     }
 
     statusChanged({id, status, newStatus}) {

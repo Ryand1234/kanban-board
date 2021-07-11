@@ -17,10 +17,8 @@ module.exports = async function queryToDatabase (data, op) {
     "operation": "delete",
     "schema": "tasks",
     "table": "task",
-    "records": [
-        {
-            "id": data? data.id: ''
-        }
+    "hash_values": [
+        data? data.id: ''
     ]
   })
 

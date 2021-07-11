@@ -18,6 +18,7 @@ export class AppComponent implements OnInit{
     pendingTasks: any
     showAdd: Boolean = false;
     task: any
+    op: Number
     async ngOnInit() {
       this.service.query({'op': 3}).subscribe((res: any)=>{
           this.totalTasks = res.length
@@ -54,11 +55,13 @@ export class AppComponent implements OnInit{
       }
       this.curTask = this.curTask[0]
       this.curTask.status = newStatus
+      this.op = 2;
       switch(newStatus) {
         case 'pending': this.pendingTasks.push(this.curTask); break;
         case 'inprogress': this.inProgressTasks.push(this.curTask); break;
         case 'completed': this.completeTasks.push(this.curTask); break;
+        default: this.op = 4;
       }
-
+      this.service.query({'data': this.curTask, 'op': this.op}).subscribe();
     }
 }

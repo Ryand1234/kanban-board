@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './api.service'
+import { Itask } from 'src/app/task'
+
 
 @Component({
   selector: 'app-root',
@@ -7,17 +9,18 @@ import { ApiService } from './api.service'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  title = 'Kanban Board';
     
+    title = 'Kanban Board';
+
     constructor(private service: ApiService) {}
 
-    curTask: any = {}
+    curTask: Itask
     totalTasks: number = 0
-    inProgressTasks: any
-    completeTasks: any
-    pendingTasks: any
+    inProgressTasks: Array<Itask>
+    completeTasks: Array<Itask>
+    pendingTasks: Array<Itask>
+    tempTask: Array<Itask>
     showAdd: Boolean = false;
-    task: any
     op: Number
     async ngOnInit() {
       this.service.query({'op': 3}).subscribe((res: any)=>{
@@ -42,18 +45,17 @@ export class AppComponent implements OnInit{
     }
 
     statusChanged({id, status, newStatus}) {
-      this.curTask = {}
       if (status === 'pending') {
-        this.curTask = this.pendingTasks.filter(e => e.id == id)
+        this.tempTask = this.pendingTasks.filter(e => e.id == id)
         this.pendingTasks = this.pendingTasks.filter(e => e.id != id)
       } else if (status === 'inprogress') {
-        this.curTask = this.inProgressTasks.filter(e => e.id == id)
+        this.tempTask = this.inProgressTasks.filter(e => e.id == id)
         this.inProgressTasks = this.inProgressTasks.filter(e => e.id != id)
       } else {
-        this.curTask = this.completeTasks.filter(e => e.id == id)
+        this.tempTask = this.completeTasks.filter(e => e.id == id)
         this.completeTasks = this.completeTasks.filter(e => e.id != id)
       }
-      this.curTask = this.curTask[0]
+      this.curTask = this.tempTask[0]
       this.curTask.status = newStatus
       this.op = 2;
       switch(newStatus) {
